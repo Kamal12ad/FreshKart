@@ -28,6 +28,18 @@
     {
       "path": "src/assets/fonts/README.md",
       "sha1": "927c07c19ef64aa3559e4f804282066ce81b8fc8"
+    },
+    {
+      "path": "node_modules/@react-native-vector-icons/ionicons/fonts/Ionicons.ttf",
+      "sha1": "3a656ee69b64ccb1e57f1721f7659b50c1fb56ef"
+    },
+    {
+      "path": "node_modules/@react-native-vector-icons/material-icons/fonts/MaterialIcons.ttf",
+      "sha1": "7e02c3f005532ff4d24148567c84089756a7848a"
+    },
+    {
+      "path": "node_modules/@react-native-vector-icons/fontawesome/fonts/FontAwesome.ttf",
+      "sha1": "13b1eab65a983c7a73bc7997c479d66943f7c6cb"
     }
   ]
 }

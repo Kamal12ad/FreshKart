@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAuth } from '../../context/AuthContext';
+import VectorIconExample from '../../components/VectorIconExample';
 
 const HomeScreen = () => {
   const { logout } = useAuth();
@@ -10,6 +11,8 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Home Screen</Text>
       <Text style={styles.subtitle}>Welcome to TickIt!</Text>
+      
+      <VectorIconExample/>
       
       <TouchableOpacity style={styles.button} onPress={logout}>
         {/* <Icon name="logout" size={20} color="#fff" style={{ marginRight: 8 }} /> */}
