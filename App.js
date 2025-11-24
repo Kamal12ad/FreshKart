@@ -4,6 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider } from './src/context/AuthContext';
 import RootNavigator from './src/navigation/RootNavigator';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   useEffect(() => {
@@ -13,6 +14,11 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
+      <StatusBar
+        hidden={false}
+        // barStyle="dark-content" // or "light-content"
+        // backgroundColor="#ffffff"
+      />
       <AuthProvider>
         <RootNavigator />
       </AuthProvider>

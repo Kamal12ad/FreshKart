@@ -12,7 +12,8 @@ const AppStack = () => {
       }}
     >
       <Stack.Screen name="MainTabs" component={BottomTabNavigator} />
-      {/* Add more private screens here if needed */}
+      <Stack.Screen name="Login" component={require('../screens/auth/LoginScreen').default} />
+      <Stack.Screen name="Signup" component={require('../screens/auth/SignupScreen').default} />
     </Stack.Navigator>
   );
 };

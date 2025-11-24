@@ -13,7 +13,9 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isGuest, setIsGuest] = useState(true);
 
   useEffect(() => {
     checkAuthState();
@@ -21,10 +23,16 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthState = async () => {
     try {
-      const token = await AsyncStorage.getItem('userToken');
+      const [token, onboardingStatus] = await Promise.all([
+        AsyncStorage.getItem('userToken'),
+        AsyncStorage.getItem('hasSeenOnboarding')
+      ]);
       setIsAuthenticated(!!token);
+      setHasSeenOnboarding(!!onboardingStatus);
     } catch (error) {
       console.error('Error checking auth state:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -38,11 +46,26 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  const completeOnboarding = async () => {
+    await AsyncStorage.setItem('hasSeenOnboarding', 'true');
+    setHasSeenOnboarding(true);
+    setIsGuest(true);
+  };
+
+  const requireAuth = () => {
+    return !isAuthenticated;
+  };
+
   return (
     <AuthContext.Provider value={{
       isAuthenticated,
+      hasSeenOnboarding,
+      isLoading,
+      isGuest,
       login,
-      logout
+      logout,
+      completeOnboarding,
+      requireAuth
     }}>
       {children}
     </AuthContext.Provider>
